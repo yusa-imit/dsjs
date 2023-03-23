@@ -1,6 +1,6 @@
 import { BaseObject } from "./BaseObject"
 
-interface BaseNodeConstructorOptions {
+export interface BaseNodeConstructorOptions {
   __DS__TYPE?: string
 }
 
