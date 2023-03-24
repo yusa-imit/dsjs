@@ -1,2 +1,2 @@
-export { BaseObject } from "./src/BaseObject"
+export { DSObject } from "./src/DSObject"
 export { BaseNode } from "./src/BaseNode"

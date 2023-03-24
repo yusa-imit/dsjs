@@ -1,4 +1,4 @@
-import { BaseNodeConstructorOptions } from "base/src/BaseNode"
+import { DSObjectProps } from "base/src/DSObject"
 import { SingleLinkedListNode } from "../SingleLinkedList/SingleLinkedListNode"
 export class DoubleLinkedListNode<T> extends SingleLinkedListNode<T> {
   protected _prevNode: this | null
@@ -6,7 +6,7 @@ export class DoubleLinkedListNode<T> extends SingleLinkedListNode<T> {
     value: T,
     prevNode = null,
     nextNode = null,
-    options: BaseNodeConstructorOptions = { __DS__TYPE: "DoubleLinkedListNode" }
+    options: DSObjectProps = { __DS__TYPE: "DoubleLinkedListNode" }
   ) {
     super(value, nextNode, options)
     this.prevNode = prevNode

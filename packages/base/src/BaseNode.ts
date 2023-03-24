@@ -1,18 +1,10 @@
-import { BaseObject } from "./BaseObject"
+import { DSObject, DSObjectProps } from "./DSObject"
 
-export interface BaseNodeConstructorOptions {
-  __DS__TYPE?: string
-}
-
-export class BaseNode<T = any> extends BaseObject {
+export class BaseNode<T = any> extends DSObject {
   protected _value: T
   protected _nextNode: this | null
-  constructor(
-    value: T,
-    nextNode: any | null,
-    options: BaseNodeConstructorOptions
-  ) {
-    super(options.__DS__TYPE ?? "BaseNode")
+  constructor(value: T, nextNode: any | null, options: DSObjectProps) {
+    super(options || { __DS__TYPE: "BaseNode" })
     this.value = value
     this.nextNode = nextNode
   }

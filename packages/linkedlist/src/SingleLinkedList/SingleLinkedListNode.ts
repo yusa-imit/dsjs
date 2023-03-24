@@ -1,12 +1,12 @@
-import { BaseNode, BaseObject } from "base"
-import { BaseNodeConstructorOptions } from "base/src/BaseNode"
+import { BaseNode, DSObject } from "base"
+import { DSObjectProps } from "base/src/DSObject"
 
 export class SingleLinkedListNode<T> extends BaseNode<T> {
   protected _nextNode: this | null
   constructor(
     value: T,
     nextNode: SingleLinkedListNode<T> | null = null,
-    options: BaseNodeConstructorOptions = { __DS__TYPE: "SingleLinkedListNode" }
+    options: DSObjectProps = { __DS__TYPE: "SingleLinkedListNode" }
   ) {
     super(value, nextNode, options)
   }

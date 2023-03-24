@@ -1,7 +1,7 @@
-import { BaseObject } from "base"
+import { DSObject } from "base"
 import { SingleLinkedListNode } from "./SingleLinkedListNode"
 
-export class SingleLinkedList<T> extends BaseObject {
+export class SingleLinkedList<T> extends DSObject {
   private head: SingleLinkedListNode<T> | null = null
   private tail: SingleLinkedListNode<T> | null = null
   public length = 0
@@ -10,7 +10,7 @@ export class SingleLinkedList<T> extends BaseObject {
   constructor(value: T)
   constructor(...values: T[])
   constructor() {
-    super("SingleLinkedList")
+    super({ __DS__TYPE: "SingleLinkedList" })
     this.pushBack(...arguments)
   }
   front() {
