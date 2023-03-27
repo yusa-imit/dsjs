@@ -17,4 +17,8 @@ export class DoubleLinkedListNode<T> extends SingleLinkedListNode<T> {
   set prevNode(node: this | null) {
     this._prevNode = node
   }
+  detachFromNode() {
+    this.nextNode = null
+    this.prevNode = null
+  }
 }

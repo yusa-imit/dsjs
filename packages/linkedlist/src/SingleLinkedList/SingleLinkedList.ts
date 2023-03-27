@@ -1,31 +1,28 @@
 import { DSObject } from "base"
+import { LinkedListType } from "../type/LinkedListType"
 import { SingleLinkedListNode } from "./SingleLinkedListNode"
 
-export class SingleLinkedList<T> extends DSObject {
-  private head: SingleLinkedListNode<T> | null = null
-  private tail: SingleLinkedListNode<T> | null = null
+export class SingleLinkedList<T> extends LinkedListType<
+  T,
+  SingleLinkedListNode<T>
+> {
   public length = 0
-  constructor(arr: Array<T>)
+  constructor(arr: SingleLinkedListNode<T>[])
+  constructor(arr: T[])
   constructor(node: SingleLinkedListNode<T>)
   constructor(value: T)
-  constructor(...values: T[])
+  constructor(...values: T[] | SingleLinkedListNode<T>[])
   constructor() {
     super({ __DS__TYPE: "SingleLinkedList" })
     this.pushBack(...arguments)
   }
-  front() {
-    return this.head
-  }
-  back() {
-    return this.tail
-  }
-  private checkNode(node: SingleLinkedListNode<T>) {
+  protected checkNode(node: SingleLinkedListNode<T>) {
     if (node.__DS__TYPE && node.__DS__TYPE === "SingleLinkedListNode") {
       return true
     }
     return false
   }
-  private _pushFront(node: SingleLinkedListNode<T>) {
+  protected _pushFront(node: SingleLinkedListNode<T>) {
     if (!(node instanceof SingleLinkedListNode))
       throw new Error("Invalid parameter.")
     const prevHead = this.head
@@ -33,6 +30,7 @@ export class SingleLinkedList<T> extends DSObject {
     this.head.nextNode = prevHead
     this.length++
   }
+  pushFront(arr: SingleLinkedListNode<T>[]): void
   pushFront(arr: T[]): void
   pushFront(value: T): void
   pushFront(node: SingleLinkedListNode<T>): void
@@ -47,7 +45,8 @@ export class SingleLinkedList<T> extends DSObject {
       } else if (Array.isArray(arguments[0])) {
         if (arguments[0].length === 0) throw new Error("Invalid parameter")
         arguments[0].reverse().forEach((v) => {
-          this._pushFront(new SingleLinkedListNode(v))
+          if (v instanceof SingleLinkedListNode) this._pushFront(v)
+          else this._pushFront(new SingleLinkedListNode(v))
         })
       } else {
         this._pushFront(new SingleLinkedListNode(arguments[0]))
@@ -60,7 +59,7 @@ export class SingleLinkedList<T> extends DSObject {
       }
     }
   }
-  private _pushBack(node: SingleLinkedListNode<T>) {
+  protected _pushBack(node: SingleLinkedListNode<T>) {
     if (!this.checkNode(node)) throw new Error("Invalid parameter.")
     if (this.tail === null) {
       if (this.head === null) {
@@ -72,6 +71,7 @@ export class SingleLinkedList<T> extends DSObject {
     this.tail = this.tail.nextNode
     this.length++
   }
+  pushBack(arr: SingleLinkedListNode<T>[]): void
   pushBack(arr: T[]): void
   pushBack(value: T): void
   pushBack(node: SingleLinkedListNode<T>): void
@@ -83,7 +83,8 @@ export class SingleLinkedList<T> extends DSObject {
       } else if (Array.isArray(arguments[0])) {
         if (arguments[0].length === 0) throw new Error("Invalid parameter")
         arguments[0].forEach((v) => {
-          this._pushBack(new SingleLinkedListNode(v))
+          if (v instanceof SingleLinkedListNode) this._pushBack(v)
+          else this._pushBack(new SingleLinkedListNode(v))
         })
       } else {
         this._pushBack(new SingleLinkedListNode(arguments[0]))
