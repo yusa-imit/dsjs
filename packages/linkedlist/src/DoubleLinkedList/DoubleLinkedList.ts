@@ -97,7 +97,7 @@ export class DoubleLinkedList<T> extends LinkedListType<
       this.tail.nextNode = null
     }
     if (prevTail !== null) {
-      prevTail.detachFromNode()
+      prevTail.detach()
     }
     this.length--
     return prevTail
@@ -109,7 +109,7 @@ export class DoubleLinkedList<T> extends LinkedListType<
       this.head.prevNode = null
     }
     if (prevHead !== null) {
-      prevHead.detachFromNode()
+      prevHead.detach()
     }
     this.length--
     return prevHead
