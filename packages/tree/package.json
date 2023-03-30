@@ -1,0 +1,14 @@
+{
+  "name": "tree",
+  "version": "0.0.0",
+  "main": "./index.ts",
+  "license": "MIT",
+  "type": "module",
+  "scripts": {
+    "lint": "eslint  \"**/*.ts*\""
+  },
+  "devDependencies": {
+    "tsconfig": "workspace:*",
+    "base": "workspace:*"
+  }
+}
