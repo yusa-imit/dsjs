@@ -4,7 +4,7 @@ export class BinaryTreeNode<K = string, V = any> extends DSObject {
   value: V
   _left: null | this
   _right: null | this
-  constructor(key: K, value: V, left: any = null, right = null) {
+  constructor(key: K, value: V, left: any = null, right: any = null) {
     super({ __DS__TYPE: "BinaryTreeNode" })
     this.key = key
     this.value = value
