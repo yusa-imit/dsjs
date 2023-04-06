@@ -13,16 +13,16 @@ export abstract class DSTree<K, V, N> extends DSObject {
   abstract insert(...nodes: N[]): void
   abstract insert(node: N): void
 
-  abstract delete(...key_values: [K, V][]): void
-  abstract delete(key_value: [K, V]): void
+  abstract delete(...keys: K[]): void
+  abstract delete(key: K): void
 
   abstract get(key: K): N | null
 
-  abstract min(): K
-  abstract max(): K
+  abstract min(): K | null
+  abstract max(): K | null
 
-  abstract deleteMin(): K
-  abstract deleteMax(): K
+  abstract deleteMin(): K | null
+  abstract deleteMax(): K | null
 
   abstract keys(): IterableIterator<K>
   abstract values(): IterableIterator<V>
