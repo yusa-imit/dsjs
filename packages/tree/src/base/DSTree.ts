@@ -8,12 +8,16 @@ export abstract class DSTree<K, V, N> extends DSObject {
   constructor(props: DSObjectProps = { __DS__TYPE: "DSTree" }) {
     super(props)
   }
+
   abstract insert(...key_values: [K, V][]): void
+  abstract insert(key_values: [K, V][]): void
   abstract insert(key_value: [K, V]): void
   abstract insert(...nodes: N[]): void
+  abstract insert(nodes: N[]): void
   abstract insert(node: N): void
 
   abstract delete(...keys: K[]): void
+  abstract delete(keys: K[]): void
   abstract delete(key: K): void
 
   abstract get(key: K): N | null
@@ -25,8 +29,11 @@ export abstract class DSTree<K, V, N> extends DSObject {
   abstract deleteMax(): K | null
 
   abstract keys(): IterableIterator<K>
+  abstract keysAsArray(): K[]
   abstract values(): IterableIterator<V>
+  abstract valuesAsArray(): V[]
   abstract nodes(): IterableIterator<N>
+  abstract nodesAsArray(): N[]
 
   abstract detachTree(key: K): this
 }

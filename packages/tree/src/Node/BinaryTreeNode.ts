@@ -1,4 +1,5 @@
 import { DSObject } from "base"
+import { DSObjectProps } from "base/src/DSObject"
 export class BinaryTreeNode<K = string, V = any> extends DSObject {
   key: K
   value: V
@@ -8,20 +9,21 @@ export class BinaryTreeNode<K = string, V = any> extends DSObject {
   constructor(
     key: K,
     value: V,
-    parent: any = null,
-    left: any = null,
-    right: any = null
+    parent: BinaryTreeNode<K, V> | null = null,
+    left: BinaryTreeNode<K, V> | null = null,
+    right: BinaryTreeNode<K, V> | null = null,
+    option: DSObjectProps = { __DS__TYPE: "BinaryTreeNode" }
   ) {
-    super({ __DS__TYPE: "BinaryTreeNode" })
+    super(option)
     this.key = key
     this.value = value
-    this.parent = parent
-    this.left = left
-    this.right = right
+    this.parent = parent as this
+    this.left = left as this
+    this.right = right as this
   }
   private checkNode(node: any) {
     if (node === null) return true
-    if (node instanceof BinaryTreeNode) return true
+    if (node.__DS__TYPE && node.__DS__TYPE === this.__DS__TYPE) return true
     else
       throw new Error(
         "Invalid parameter. Do not try to assign Non-node type in node"

@@ -4,7 +4,7 @@ import { BinaryTreeNode } from "../Node/BinaryTreeNode"
 import { DEFAULT_COMPARE_FUNCTION } from "../utils/compareFunctions"
 
 interface BSTOptions<K> {
-  deepCompareObjectOnDefaultCompareFunction: boolean
+  deepCompareObjectOnDefaultCompareFunction?: boolean
   compareFunction?: (a: K, b: K) => number
 }
 
@@ -64,6 +64,7 @@ export class BST<K = string, V = any>
       node.parent = current
     }
     this._setNodeMap(node)
+    this.length++
   }
   insert(...key_values: [K, V][]): void
   insert(key_values: [K, V][]): void
@@ -155,6 +156,7 @@ export class BST<K = string, V = any>
     const node = this.get(key)
     if (node === null) return
     this._replace(node)
+    this.length--
   }
   delete(...keys: K[]): void
   delete(keys: K[]): void
