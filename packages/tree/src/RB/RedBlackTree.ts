@@ -33,7 +33,10 @@ export class RedBlackTree<K, V>
   [Symbol.iterator]() {
     return new DSIterableIterator(this.nodes())
   }
+  private _recolor(node: RedBlackNode<K, V>) {}
+  private _restructure() {}
 
+  private _insert() {}
   insert(...values: K[]): void
   insert(values: K[]): void
   insert(value: K): void
@@ -43,6 +46,8 @@ export class RedBlackTree<K, V>
   insert(node?: unknown, ...rest: unknown[]): void {
     throw new Error("Method not implemented.")
   }
+
+  private _delete() {}
   delete(...keys: V[]): void
   delete(keys: V[]): void
   delete(key: V): void

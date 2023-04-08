@@ -10,7 +10,7 @@ class DSObject {
   get __DS__TYPE() {
     return this.___DS__TYPE
   }
-  set __DS__TYPE(__DS__TYPE: string) {
+  protected set __DS__TYPE(__DS__TYPE: string) {
     this.___DS__TYPE = __DS__TYPE
   }
 }

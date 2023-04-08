@@ -1,17 +1,17 @@
 import { DSObjectProps } from "base/src/DSObject"
 import { BinaryTreeNode } from "./BinaryTreeNode"
 
-export class RedBlackNode<K = string, V = any> extends BinaryTreeNode<K, V> {
+export class RedBlackNode<V = any, K = string> extends BinaryTreeNode<V, K> {
   _color: "red" | "black" = "red"
   constructor(
-    key: K,
     value: V,
-    parent: RedBlackNode<K, V> | null = null,
-    left: RedBlackNode<K, V> | null = null,
-    right: RedBlackNode<K, V> | null = null,
+    key?: K,
+    parent: RedBlackNode<V, K> | null = null,
+    left: RedBlackNode<V, K> | null = null,
+    right: RedBlackNode<V, K> | null = null,
     option: DSObjectProps = { __DS__TYPE: "RedBlackNode" }
   ) {
-    super(key, value, parent, left, right, option)
+    super(value, key, parent, left, right, option)
   }
   get color() {
     return this._color

@@ -79,20 +79,14 @@ export class BST<V = any, K = string>
         arguments[0][0].__DS__TYPE === "BinaryTreeNode"
       for (let i = 0; i < arguments[0].length; i++) {
         this._insert(
-          typeDef
-            ? arguments[i]
-            : new BinaryTreeNode(arguments[0][i][0], arguments[0][i][1])
+          typeDef ? arguments[i] : new BinaryTreeNode(arguments[0][i])
         )
       }
     } else {
       const typeDef =
         arguments[0].__DS__TYPE && arguments[0].__DS__TYPE === "BinaryTreeNode"
       for (let i = 0; i < arguments.length; i++) {
-        this._insert(
-          typeDef
-            ? arguments[i]
-            : new BinaryTreeNode(arguments[i][0], arguments[i][1])
-        )
+        this._insert(typeDef ? arguments[i] : new BinaryTreeNode(arguments[i]))
       }
     }
   }
