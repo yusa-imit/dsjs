@@ -1,7 +1,7 @@
 import { DSObject } from "base"
 import { DSObjectProps } from "../../../base/src/DSObject"
 
-export abstract class DSTree<K, V, N> extends DSObject {
+export abstract class DSTree<V, K, N> extends DSObject {
   root: N | null = null
   length: number
   height: number
@@ -9,9 +9,9 @@ export abstract class DSTree<K, V, N> extends DSObject {
     super(props)
   }
 
-  abstract insert(...key_values: [K, V][]): void
-  abstract insert(key_values: [K, V][]): void
-  abstract insert(key_value: [K, V]): void
+  abstract insert(...values: V[]): void
+  abstract insert(values: V[]): void
+  abstract insert(value: V): void
   abstract insert(...nodes: N[]): void
   abstract insert(nodes: N[]): void
   abstract insert(node: N): void

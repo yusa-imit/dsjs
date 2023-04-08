@@ -5,6 +5,7 @@ importers:
   .:
     specifiers:
       '@types/jest': ^29.5.0
+      '@types/node': ^17.0.12
       '@typescript-eslint/eslint-plugin': ^5.55.0
       '@typescript-eslint/parser': ^5.55.0
       eslint: ^7.32.0
@@ -16,6 +17,8 @@ importers:
       prettier: ^2.8.0
       turbo: latest
       typescript: ^5.0.2
+    dependencies:
+      '@types/node': 17.0.45
     devDependencies:
       '@types/jest': 29.5.0
       '@typescript-eslint/eslint-plugin': 5.55.0_5u64safighfynn37kfh5wya3wu
@@ -401,7 +404,6 @@ packages:
 
   /@types/node/17.0.45:
     resolution: {integrity: sha512-w+tIMs3rq2afQdsPJlODhoUEKzFP1ayaoyl1CcnwtIlsVe7K7bA1NGm4s3PraqTLlXnbIN84zuBlxBWo1u9BLw==}
-    dev: true
 
   /@types/prop-types/15.7.5:
     resolution: {integrity: sha512-JCB8C6SnDoQf0cNycqd/35A7MjcnK+ZTqE7judS6o7utxUCg6imJg3QK2qzHKszlTjcj2cn+NwMB2i96ubpj7w==}

@@ -33,46 +33,47 @@ export class RedBlackTree<K, V>
   [Symbol.iterator]() {
     return new DSIterableIterator(this.nodes())
   }
-  insert(...key_values: [K, V][]): void
-  insert(key_values: [K, V][]): void
-  insert(key_value: [K, V]): void
+
+  insert(...values: K[]): void
+  insert(values: K[]): void
+  insert(value: K): void
   insert(...nodes: RedBlackNode<K, V>[]): void
   insert(nodes: RedBlackNode<K, V>[]): void
   insert(node: RedBlackNode<K, V>): void
-  insert(): void {
+  insert(node?: unknown, ...rest: unknown[]): void {
     throw new Error("Method not implemented.")
   }
-  delete(...keys: K[]): void
-  delete(keys: K[]): void
-  delete(key: K): void
-  delete(): void {
+  delete(...keys: V[]): void
+  delete(keys: V[]): void
+  delete(key: V): void
+  delete(key?: unknown, ...rest: unknown[]): void {
     throw new Error("Method not implemented.")
   }
-  get(key: K): RedBlackNode<K, V> | null {
+  get(key: V): RedBlackNode<K, V> | null {
     throw new Error("Method not implemented.")
   }
-  min(): K | null {
+  min(): V | null {
     throw new Error("Method not implemented.")
   }
-  max(): K | null {
+  max(): V | null {
     throw new Error("Method not implemented.")
   }
-  deleteMin(): K | null {
+  deleteMin(): V | null {
     throw new Error("Method not implemented.")
   }
-  deleteMax(): K | null {
+  deleteMax(): V | null {
     throw new Error("Method not implemented.")
   }
-  keys(): IterableIterator<K> {
+  keys(): IterableIterator<V> {
     throw new Error("Method not implemented.")
   }
-  keysAsArray(): K[] {
+  keysAsArray(): V[] {
     throw new Error("Method not implemented.")
   }
-  values(): IterableIterator<V> {
+  values(): IterableIterator<K> {
     throw new Error("Method not implemented.")
   }
-  valuesAsArray(): V[] {
+  valuesAsArray(): K[] {
     throw new Error("Method not implemented.")
   }
   nodes(): IterableIterator<RedBlackNode<K, V>> {
@@ -81,7 +82,7 @@ export class RedBlackTree<K, V>
   nodesAsArray(): RedBlackNode<K, V>[] {
     throw new Error("Method not implemented.")
   }
-  detachTree(key: K): this {
+  detachTree(key: V): this {
     throw new Error("Method not implemented.")
   }
 }

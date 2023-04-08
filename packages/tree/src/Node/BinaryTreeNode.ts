@@ -1,22 +1,25 @@
 import { DSObject } from "base"
 import { DSObjectProps } from "base/src/DSObject"
-export class BinaryTreeNode<K = string, V = any> extends DSObject {
+
+import crypto from "crypto"
+
+export class BinaryTreeNode<V = any, K = string> extends DSObject {
   key: K
   value: V
   _parent: null | this
   _left: null | this
   _right: null | this
   constructor(
-    key: K,
     value: V,
-    parent: BinaryTreeNode<K, V> | null = null,
-    left: BinaryTreeNode<K, V> | null = null,
-    right: BinaryTreeNode<K, V> | null = null,
+    key?: K,
+    parent: BinaryTreeNode<V, K> | null = null,
+    left: BinaryTreeNode<V, K> | null = null,
+    right: BinaryTreeNode<V, K> | null = null,
     option: DSObjectProps = { __DS__TYPE: "BinaryTreeNode" }
   ) {
     super(option)
-    this.key = key
     this.value = value
+    this.key = key ?? (crypto.randomUUID() as K)
     this.parent = parent as this
     this.left = left as this
     this.right = right as this

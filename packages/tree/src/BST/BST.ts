@@ -3,19 +3,19 @@ import { DSTree } from "../base/DSTree"
 import { BinaryTreeNode } from "../Node/BinaryTreeNode"
 import { DEFAULT_COMPARE_FUNCTION } from "../utils/compareFunctions"
 
-interface BSTOptions<K> {
+interface BSTOptions<K = string> {
   deepCompareObjectOnDefaultCompareFunction?: boolean
   compareFunction?: (a: K, b: K) => number
 }
 
-export class BST<K = string, V = any>
-  extends DSTree<K, V, BinaryTreeNode<K, V>>
-  implements Iterable<BinaryTreeNode<K, V>>
+export class BST<V = any, K = string>
+  extends DSTree<V, K, BinaryTreeNode<V, K>>
+  implements Iterable<BinaryTreeNode<V, K>>
 {
   [Symbol.iterator]() {
     return new DSIterableIterator(this.nodes())
   }
-  private _nodeMap = new Map<K, BinaryTreeNode<K, V>>()
+  private _nodeMap = new Map<K, BinaryTreeNode<V, K>>()
   protected _compareFunc: (a: K, b: K) => number
   constructor(
     options: BSTOptions<K> = { deepCompareObjectOnDefaultCompareFunction: true }
@@ -31,13 +31,13 @@ export class BST<K = string, V = any>
       } else this._compareFunc = (a, b) => DEFAULT_COMPARE_FUNCTION(a, b, false)
     }
   }
-  private _setNodeMap(node: BinaryTreeNode<K, V>): void {
+  private _setNodeMap(node: BinaryTreeNode<V, K>): void {
     this._nodeMap.set(node.key, node)
   }
   private _deleteNodeMap(key: K) {
     this._nodeMap.delete(key)
   }
-  private _insert(node: BinaryTreeNode<K, V>): void {
+  private _insert(node: BinaryTreeNode<V, K>): void {
     let current = this.root
     if (current === null) {
       this.root = node
@@ -66,12 +66,12 @@ export class BST<K = string, V = any>
     this._setNodeMap(node)
     this.length++
   }
-  insert(...key_values: [K, V][]): void
-  insert(key_values: [K, V][]): void
-  insert(key_value: [K, V]): void
-  insert(...nodes: BinaryTreeNode<K, V>[]): void
-  insert(nodes: BinaryTreeNode<K, V>[]): void
-  insert(node: BinaryTreeNode<K, V>): void
+  insert(...values: V[]): void
+  insert(values: V[]): void
+  insert(value: V): void
+  insert(...nodes: BinaryTreeNode<V, K>[]): void
+  insert(nodes: BinaryTreeNode<V, K>[]): void
+  insert(node: BinaryTreeNode<V, K>): void
   insert(): void {
     if (Array.isArray(arguments[0])) {
       const typeDef =
@@ -96,7 +96,7 @@ export class BST<K = string, V = any>
       }
     }
   }
-  private _findSubMin(node: BinaryTreeNode<K, V>): BinaryTreeNode<K, V> {
+  private _findSubMin(node: BinaryTreeNode<V, K>): BinaryTreeNode<V, K> {
     let cur = node
     while (true) {
       if (cur.left === null) break
@@ -104,7 +104,7 @@ export class BST<K = string, V = any>
     }
     return cur
   }
-  private _findSubMax(node: BinaryTreeNode<K, V>): BinaryTreeNode<K, V> {
+  private _findSubMax(node: BinaryTreeNode<V, K>): BinaryTreeNode<V, K> {
     let cur = node
     while (true) {
       if (cur.right === null) break
@@ -112,7 +112,7 @@ export class BST<K = string, V = any>
     }
     return cur
   }
-  private _replace(node: BinaryTreeNode<K, V>) {
+  private _replace(node: BinaryTreeNode<V, K>) {
     const left = node.left
     const right = node.right
     const parent = node.parent
@@ -130,16 +130,16 @@ export class BST<K = string, V = any>
     else if (left === null || right === null) {
       // Find min value in right sub tree
       if (left === null) {
-        const target = this._findSubMin(right as BinaryTreeNode<K, V>)
+        const target = this._findSubMin(right as BinaryTreeNode<V, K>)
         // Target's parents will be node because node is not root
-        ;(target.parent as BinaryTreeNode<K, V>).left = null
+        ;(target.parent as BinaryTreeNode<V, K>).left = null
         target.parent = parent
         target.right = right
       }
       // Find max value in left sub tree
       else {
         const target = this._findSubMax(left)
-        ;(target.parent as BinaryTreeNode<K, V>).right = null
+        ;(target.parent as BinaryTreeNode<V, K>).right = null
         target.parent = parent
         target.left = left
       }
@@ -147,7 +147,7 @@ export class BST<K = string, V = any>
     // Have Two child
     else {
       const target = this._findSubMax(left)
-      ;(target.parent as BinaryTreeNode<K, V>).right = null
+      ;(target.parent as BinaryTreeNode<V, K>).right = null
       target.parent = parent
       target.left = left
     }
@@ -170,7 +170,7 @@ export class BST<K = string, V = any>
       }
     }
   }
-  get(key: K): BinaryTreeNode<K, V> | null {
+  get(key: K): BinaryTreeNode<V, K> | null {
     const node = this._nodeMap.get(key)
     return node || null
   }
